@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <title>MyDiary</title>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <!-- Navigation -->
+        <a href="{% url 'index' %}">MyDiary</a>
+        <nav>
+            <!-- If user profile has NOT been created -->
+            <div class="guest">
+                <a href="{% url 'register_user' %}">Create Profile</a>
+                <a href="{% url 'login_user' %}">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Create Profile Form -->
+        <section id="register">
+            <div class="form">
+                <h2>Create Profile</h2>
+                <form method="post" action="{% url 'register_user' %}">
+                    {{ form }}
+                    {% csrf_token %}
+                    <button type="submit">Create</button>
+                </form>
+            </div>
+        </section>
+    </main>
+</div>
+<!-- footer -->
+<footer>
+    <p>Created by Angel Gadzhev</p>
+</footer>
+</body>
+</html>
