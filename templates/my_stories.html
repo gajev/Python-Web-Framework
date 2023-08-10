@@ -1,0 +1,103 @@
+{%  load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=\, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+    <title>MyDiary</title>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <div class="user">
+        <a href="{% url 'index' %}">MyDiary</a>
+        <a href="{% url 'partners_view' %}">Partners</a>
+            </div>
+
+        <nav>
+
+            <!-- If there is a user profile -->
+            <div class="user">
+                <a href="#">My Favorite Stories</a>
+                <a href="{% url 'my_stories' %}">My Stories</a>
+                <a href="{% url 'add_story' %}">Add Story</a>
+                <a href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
+                <a href="{% url 'logout_user' %}">Logout</a>
+            </div>
+
+
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Dashboard Page -->
+        {% if stories %}
+            {% if not overall_status %}:
+                <h2>Stories
+            {% else %}
+                        {% if overall_status < 2 %}
+                            <h3 class="special-heading">Your overall status is {{ overall_status|floatformat:2 }}! You could contact our <a href="{% url 'partners_view' %}">partners</a> to help you.</h3>
+                            {% elif overall_status > 4 %}
+                            <h3 class="special-heading2">Your overall status is great: {{ overall_status|floatformat:2 }}! Carry on like this!</h3>
+                            {% else %}
+                            <h3>Overall: {{ overall_status|floatformat:2 }}</h3>
+                            {% endif %}
+                        {% if health_status < 2 %}
+                            <h3 class="special-heading">Your health status is {{ health_status|floatformat:2 }}! You could contact our <a href="{% url 'partners_view' %}">partners</a> to help you.</h3>
+                            {% elif health_status > 4 %}
+                            <h3 class="special-heading2">Your health status is great: {{ health_status|floatformat:2 }}! Carry on like this!</h3>
+                            {% else %}
+                            <h3>Health: {{ health_status|floatformat:2 }}</h3>
+                            {% endif %}
+                        {% if love_status < 2 %}
+                            <h3 class="special-heading">Your love status is {{ love_status|floatformat:2 }}! You could contact our <a href="{% url 'partners_view' %}">partners</a> to help you.</h3>
+                            {% elif love_status > 4 %}
+                            <h3 class="special-heading2">Your love status is great: {{ love_status|floatformat:2 }}! Carry on like this!</h3>
+                            {% else %}
+                            <h3>Love: {{ love_status|floatformat:2 }}</h3>
+                            {% endif %}
+                        {% if work_status < 2 %}
+                            <h3 class="special-heading">Your work status is {{ work_status|floatformat:2 }}! You could contact our <a href="{% url 'partners_view' %}">partners</a> to help you.</h3>
+                            {% elif work_status > 4 %}
+                            <h3 class="special-heading2">Your work status is great: {{ work_status|floatformat:2 }}! Carry on like this!</h3>
+                            {% else %}
+                            <h3>Work: {{ work_status|floatformat:2 }}</h3>
+                            {% endif %}
+                {% endif %}
+        </h2>
+        <section id="dashboard">
+            <!-- Display a div "fruit" with information about each post (if any)-->
+
+            <!-- first fruit -->
+            {% for story in stories %}
+            <div class="fruit">
+                <!-- fruit image -->
+                <img src="{{ story.picture }}" alt="example1"/>
+                <!-- fruit name -->
+                <h3 class="title">{{ fruit.name }}</h3>
+                <!-- fruit description -->
+                <p class="description">{{ story.description|truncatechars:50 }}</p>
+                <!-- fruit details button -->
+                <a class="details-btn" href="{% url 'detail_story' pk=story.pk %}">{{ story.date }}</a>
+            </div>
+            {% endfor %}
+
+        </section>
+        {% else %}
+
+        <!-- Display a heading if there are no posts -->
+        <h2>No stories yet.</h2>
+        {% endif %}
+
+    </main>
+</div>
+<!-- footer -->
+<footer>
+    <p>Created by Angel Gadzhev</p>
+</footer>
+</body>
+</html>
