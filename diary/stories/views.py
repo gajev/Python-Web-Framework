@@ -1,12 +1,21 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
+from django.http import HttpResponse, Http404, HttpResponseForbidden
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as views
 from diary.stories.forms import AddStoryForm, EditStoryForm
 from diary.stories.models import Story
-from datetime import datetime, timedelta
+from datetime import timedelta
+
 
 UserModel = get_user_model()
+
+
+def check_user_is_owner(current_object, current_request):
+    if current_object.user_id != current_request.user.id:
+        raise PermissionDenied
 
 
 def check_enough_data(collection):
@@ -50,6 +59,11 @@ class AddStoryView(views.CreateView):
 
 
 class EditStoryView(views.UpdateView):
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        check_user_is_owner(self.object, self.request)
+        return super().get(request, *args, **kwargs)
+
     template_name = 'stories/edit-story.html'
     model = Story
     form_class = EditStoryForm
@@ -57,11 +71,16 @@ class EditStoryView(views.UpdateView):
 
 
 class DeleteStoryView(views.DeleteView):
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        check_user_is_owner(self.object, self.request)
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
     template_name = 'stories/delete-story.html'
     model = Story
     success_url = reverse_lazy('my_stories')
 
-
+@login_required
 def my_stories(request):
     stories = Story.objects.filter(user=request.user)
     status = check_status(stories)
@@ -70,12 +89,30 @@ def my_stories(request):
     }
     if status:
         context.update(status)
-    return render(request, 'my_stories.html', context)
+    return render(request, 'stories/my_stories.html', context)
 
+@login_required
+def favorite_stories(request):
+    try:
+        stories = Story.objects.filter(user=request.user, favorite_story=True)
+        context = {
+            "stories": stories,
+        }
+        return render(request, 'stories/favorite_stories.html', context)
+    except TypeError:
+        default_image_path = "staticfiles/images/fruit 3.png"
+        with open(default_image_path, "rb") as default_image_file:
+            default_image_data = default_image_file.read()
 
+        response = HttpResponse(default_image_data, content_type='image/png', status=400)
+        return response
+
+@login_required
 def detail_story(request, pk):
     stories = Story.objects.filter(pk=pk)
+    check_user_is_owner(stories[0], request)
     context = {
         "story": stories[0],
     }
     return render(request, 'stories/details-story.html', context)
+

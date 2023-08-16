@@ -69,6 +69,8 @@ class DiaryUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     )
 
 
+
+
 UserModel = get_user_model()
 
 

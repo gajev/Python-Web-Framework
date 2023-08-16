@@ -1,4 +1,5 @@
 from django.contrib.auth import views as auth_views, authenticate, login, get_user_model
+from django.core.exceptions import PermissionDenied
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.shortcuts import render
@@ -6,6 +7,10 @@ from .forms import RegisterUserForm
 
 UserModel = get_user_model()
 
+
+def check_user_is_user(user_object, user_request):
+    if user_object.pk != user_request.pk:
+        raise PermissionDenied
 
 def index(request):
     if request.user.is_authenticated:
@@ -46,6 +51,11 @@ class ProfileEditView(views.UpdateView):
     model = UserModel
     fields = ['profile_picture', 'first_name', 'last_name', 'email']
     success_url = reverse_lazy('index')
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        check_user_is_user(self.object, request.user)
+        return super().get(request, *args, **kwargs)
 
 
 class ProfileDeleteView(views.DeleteView):

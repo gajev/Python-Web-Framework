@@ -2,24 +2,10 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.text import slugify
 from enum import Enum
-from star_ratings.models import Rating
-"""
-Name - it should consist of a maximum of 30 characters.
-Personal Pet Photo - the user can link a picture using a URL
-The field date of birth is optional:
-• Date of Birth - pet's day, month, and year of birth
 
-Slug - a slug automatically generated using the pet's
- name and the pet's id, separated by a "-" (dash
-"""
+from diary.partners.models import ChoicesMixin
 
 UserModel = get_user_model()
-
-
-class ChoicesMixin:
-    @classmethod
-    def choices(cls):
-        return [(choice.value, choice.name) for choice in cls]
 
 
 class Choices(ChoicesMixin, Enum):

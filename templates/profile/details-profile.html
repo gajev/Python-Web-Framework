@@ -20,7 +20,7 @@
         <nav>
             <!-- If there is a user profile -->
             <div class="user">
-                <a href="#">My Favorite Stories</a>
+                <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
                 <a href="{% url 'my_stories' %}">My Stories</a>
                 <a href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
                 <a href="{% url 'logout_user' %}">Logout</a>
@@ -50,8 +50,10 @@
 
 
                 <!-- user's full name -->
-                {% if request.user.first_name %}
+                {% if request.user.first_name and request.user.last_name%}
                 <p id="details-title">{{ request.user.first_name }} {{ request.user.last_name }}</p>
+                    {% elif request.user.first_name%}
+                    <p id="details-title">{{ request.user.first_name }}</p>
                 {% endif %}
                 <div id="info-wrapper">
                     <div id="details-description">

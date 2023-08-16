@@ -12,7 +12,6 @@ class BaseStoryForm(forms.ModelForm):
             'health': 'Health',
             'love': 'Love',
             'work': 'Work',
-            'description': 'Description',
             'favorite_story': 'Favorite Story',
             'picture': 'Picture'
         }

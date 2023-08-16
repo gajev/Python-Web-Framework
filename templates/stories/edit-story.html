@@ -21,7 +21,7 @@
         <nav>
             <!-- If there is a user profile -->
             <div class="user">
-                <a href="#">My Favorite Stories</a>
+                <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
                 <a href="{% url 'my_stories' %}">My Stories</a>
                 <a href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
                 <a href="{% url 'logout_user' %}">Logout</a>
@@ -38,7 +38,20 @@
                 <h2>Edit Story</h2>
                 <form method="post" action="{% url 'edit_story' pk=story.pk %}">
 
-                    {{ form }}
+                    {{ form.date.label_tag }}
+                    {{ form.date }}
+                    {{ form.overall.label_tag }}
+                    {{ form.overall }}
+                    <div> {{ form.health.label_tag }}
+                        {{ form.health }} </div>
+                    <div> {{ form.love.label_tag }}
+                        {{ form.love }} </div>
+                    <div> {{ form.work.label_tag }}
+                        {{ form.work }} </div>
+                    <div> {{ form.description }} </div>
+                    <div> {{ form.picture }} </div>
+                    <div> {{ form.favorite_story.label_tag }}
+                        {{ form.favorite_story }} </div>
 
                     <button type="submit">Edit</button>
                     {% csrf_token %}

@@ -7,7 +7,10 @@ from diary.partners.models import PartnerUser
 from django.views import generic as views
 
 
-# Create your views here.
+def is_authenticated_and_staff(user):
+    return user.is_authenticated and user.is_staff
+
+
 @login_required
 def partners_view(request):
     life_partners = PartnerUser.objects.filter(type_partner=1)
@@ -20,15 +23,11 @@ def partners_view(request):
         "love_partners": love_partners,
         "job_partners": job_partners,
     }
-    return render(request, 'partners.html', context)
-
-
-def is_authenticated_and_staff(user):
-    return user.is_authenticated and user.is_staff
+    return render(request, 'partners/partners.html', context)
 
 
 class EditPartnersView(UserPassesTestMixin, views.UpdateView):
-    template_name = 'edit-partner.html'
+    template_name = 'partners/edit-partner.html'
     model = PartnerUser
     form_class = PartnerUserForm
     success_url = reverse_lazy('partners_view')
@@ -38,7 +37,7 @@ class EditPartnersView(UserPassesTestMixin, views.UpdateView):
 
 
 class DeletePartnersView(UserPassesTestMixin, views.DeleteView):
-    template_name = 'delete-partner.html'
+    template_name = 'partners/delete-partner.html'
     model = PartnerUser
     success_url = reverse_lazy('partners_view')
 

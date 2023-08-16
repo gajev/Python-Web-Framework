@@ -2,8 +2,6 @@ from enum import Enum
 
 from django.db import models
 
-from diary.stories.models import ChoicesMixin
-
 
 class ChoicesMixin:
     @classmethod
