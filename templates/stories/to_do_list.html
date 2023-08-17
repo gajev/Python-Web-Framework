@@ -1,0 +1,54 @@
+{%  load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=\, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+    <title>MyDiary</title>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <div class="user">
+        <a href="{% url 'index' %}">MyDiary</a>
+        <a href="{% url 'partners_view' %}">Partners</a>
+            </div>
+
+        <nav>
+
+            <!-- If there is a user profile -->
+            <div class="user">
+                <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
+                <a href="{% url 'my_stories' %}">My Stories</a>
+                <a href="{% url 'add_story' %}">Add Story</a>
+                <a href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
+                <a href="{% url 'logout_user' %}">Logout</a>
+            </div>
+
+
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Dashboard Page -->
+        <a href="{% url 'create_to_do' %}"> <h3>Add To-do</h3> </a>
+    <ul>
+    {% for todo in todoitem_list %}
+        {% if todo.user_id == request.user.id %}
+                <h3 class="title">Category: {{ todo.category }}.<br> Action: {{ todo.title }} </h3>
+            {% endif %}
+            {% endfor %}
+    </ul>
+
+</body>
+</main>
+<!-- footer -->
+<footer>
+    <p>Created by Angel Gadzhev</p>
+</footer>
+
+</html>

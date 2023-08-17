@@ -1,0 +1,82 @@
+{%  load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=\, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+    <title>MyDiary</title>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <div class="user">
+        <a href="{% url 'index' %}">MyDiary</a>
+        <a href="{% url 'partners_view' %}">Partners</a>
+            </div>
+
+        <nav>
+            <!-- If there is a user profile -->
+            <div class="user">
+                <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
+                <a href="{% url 'my_stories' %}">My Stories</a>
+                <a href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
+                <a href="{% url 'logout_user' %}">Logout</a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Profile Details Section -->
+
+        <section id="details">
+            <div id="details-wrapper">
+            <style>
+        h2 {
+            color: saddlebrown;
+        }
+    </style>
+
+                <!-- if the user has NO profile image -->
+                {% if not request.user.profile_picture %}
+                <img id="details-img" src="{% static 'images/profile-icon-empty.png'%}" alt="profile img"/>
+                {% else %}
+                    <img class="details-img" src="{{ request.user.profile_picture }}" alt='profile-image'/>
+                {% endif %}
+
+
+                <!-- user's full name -->
+                {% if request.user.first_name and request.user.last_name%}
+                <p id="details-title">{{ request.user.first_name }} {{ request.user.last_name }}</p>
+                    {% elif request.user.first_name%}
+                    <p id="details-title">{{ request.user.first_name }}</p>
+                {% endif %}
+                <div id="info-wrapper">
+                    <div id="details-description">
+                        <!-- email -->
+                        <p>
+                            {{ request.user.email }}
+                        </p>
+                    </div>
+
+                    <!--Edit and Delete buttons -->
+                    <div id="action-buttons">
+                        <a href="{% url 'profile_edit' pk=request.user.pk %}" id="edit-btn">Edit</a>
+                        <a href="{% url 'profile_delete' pk=request.user.pk %}" id="delete-btn">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
+<!-- footer -->
+<footer>
+    <p>Created by Angel Gadzhev</p>
+</footer>
+</body>
+</html>

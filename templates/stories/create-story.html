@@ -1,0 +1,67 @@
+{%  load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=\, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+    <title>MyDiary</title>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <div class="user">
+        <a href="{% url 'index' %}">MyDiary</a>
+        <a href="{% url 'partners_view' %}">Partners</a>
+            </div>
+
+        <nav>
+            <!-- If there is a user profile -->
+            <div class="user">
+                <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
+                <a href="{% url 'my_stories' %}">My Stories</a>
+                <a href="{% url 'add_story' %}">Add Story</a>
+                <a href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
+                <a href="{% url 'logout_user' %}">Logout</a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+        <!-- Add Fruit Form -->
+        <section id="create">
+            <div class="form">
+                <h2>Add Story</h2>
+                <form method="post" action="{% url 'add_story' %}">
+                    {{ form.date.label_tag }}
+                    {{ form.date }}
+                    {{ form.overall.label_tag }}
+                    {{ form.overall }}
+                    <div> {{ form.health.label_tag }}
+                        {{ form.health }} </div>
+                    <div> {{ form.love.label_tag }}
+                        {{ form.love }} </div>
+                    <div> {{ form.work.label_tag }}
+                        {{ form.work }} </div>
+                    <div> {{ form.description }} </div>
+                    <div> {{ form.picture.label_tag }}
+                        {{ form.picture }} </div>
+                    <div> {{ form.favorite_story.label_tag }}
+                        {{ form.favorite_story }} </div>
+
+                    <button type="submit">Add story</button>
+                    {% csrf_token %}
+                </form>
+            </div>
+        </section>
+    </main>
+</div>
+<!-- footer -->
+<footer>
+    <p>Created by Angel Gadzhev</p>
+</footer>
+</body>
+</html>

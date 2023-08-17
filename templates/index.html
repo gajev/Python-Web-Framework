@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=\, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+    <title>MyDiary</title>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <div class="user">
+        <a href="{% url 'index' %}">MyDiary</a>
+        <a href="{% url 'partners_view' %}">Partners</a>
+            </div>
+
+        <nav>
+
+            <!-- If there is a user profile -->
+            <div class="user">
+                <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
+                <a href="{% url 'my_stories' %}">My Stories</a>
+                <a href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
+                <a href="{% url 'logout_user' %}">Logout</a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home page -->
+        <section id="home">
+            {% if request.user.first_name %}
+                <h1>Welcome to MyDiary, {{ request.user.first_name }}</h1>
+            {% else %}
+                <h1>Welcome to MyDiary</h1>
+            {% endif %}
+          <img
+            src= "{% static 'images/logo.jpg'%}"
+            alt="home"
+          />
+
+        </section>
+
+      </main>
+    </div>
+<!-- footer -->
+    <footer>
+      <p>Created by Angel Gadzhev</p>
+    </footer>
+  </body>
+</html>

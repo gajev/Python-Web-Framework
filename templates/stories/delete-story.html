@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=\, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+    <title>MyDiary</title>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <div class="user">
+        <a href="{% url 'index' %}">MyDiary</a>
+        <a href="{% url 'partners_view' %}">Partners</a>
+            </div>
+
+        <nav>
+            <!-- If there is a user profile -->
+            <div class="user">
+                <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
+                <a href="{% url 'my_stories' %}">My Stories</a>
+                <a href="{% url 'add_story' %}">Add Story</a>
+                <a href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
+                <a href="{% url 'logout_user' %}">Logout</a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="edit">
+
+            <div class="form">
+                <style>
+        h1 {
+            color: sandybrown;
+        }
+    </style>
+                <h1>Are you sure you want to delete your story?</h1>
+                
+                <!-- Delete Profile Form -->
+                <form id='delete' method="post" action="{% url 'delete_story' pk=story.pk %}">
+                    <!-- Confirm Button -->
+                    <button type="submit">Yes</button>
+                    {% csrf_token %}
+                </form>
+                <!-- End Delete Profile Form -->
+            </div>
+            
+        </section>
+    </main>
+</div>
+<!-- footer -->
+<footer>
+    <p>Created by Angel Gadzhev</p>
+</footer>
+</body>
+</html>

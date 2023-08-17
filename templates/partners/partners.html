@@ -1,0 +1,136 @@
+{%  load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=\, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+    <title>MyDiary</title>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <div class="user">
+        <a href="{% url 'index' %}">MyDiary</a>
+        <a href="{% url 'partners_view' %}">Partners</a>
+            </div>
+
+        <nav>
+
+            <!-- If there is a user profile -->
+            <div class="user">
+                <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
+                <a href="{% url 'my_stories' %}">My Stories</a>
+                <a href="{% url 'add_story' %}">Add Story</a>
+                <a href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
+                <a href="{% url 'logout_user' %}">Logout</a>
+            </div>
+
+
+        </nav>
+    </header>
+
+    <main>
+    <section id="dashboard">
+            <h2>Life Coaches
+
+            <!-- first fruit -->
+            {% for partner in life_partners %}
+            <div class="fruit">
+                <!-- fruit image -->
+                <img src="{{ partner.profile_picture }}" alt="example1"/>
+                <!-- fruit name -->
+                <h3 class="title">{{ partner.first_name }} {{ partner.last_name }}</h3>
+                <!-- fruit description -->
+                <p class="description">+359{{ partner.phone_number}}</p>
+                <p class="description">{{ partner.email }}</p>
+
+                <!-- fruit details button -->
+                {% if request.user.is_staff %}
+                    <a class="details-btn" href="{% url 'edit_partner' pk=partner.pk %}">Edit</a>
+                    <a class="details-btn" href="{% url 'delete_partner' pk=partner.pk %}">Delete</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            </h2>
+
+
+            <h2>Health Doctors
+
+            <!-- first fruit -->
+            {% for partner in doctor_partners %}
+            <div class="fruit">
+                <!-- fruit image -->
+                <img src="{{ partner.profile_picture }}" alt="example1"/>
+                <!-- fruit name -->
+                <h3 class="title">{{ partner.first_name }} {{ partner.last_name }}</h3>
+                <!-- fruit description -->
+                <p class="description">+359{{ partner.phone_number}}</p>
+                <p class="description">{{ partner.email}}</p>
+                <!-- fruit details button -->
+                {% if request.user.is_staff %}
+                    <a class="details-btn" href="{% url 'edit_partner' pk=partner.pk %}">Edit</a>
+                    <a class="details-btn" href="{% url 'delete_partner' pk=partner.pk %}">Delete</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            </h2>
+
+            <h2>Love Coaches
+
+            <!-- first fruit -->
+            {% for partner in love_partners %}
+            <div class="fruit">
+                <!-- fruit image -->
+                <img src="{{ partner.profile_picture }}" alt="example1"/>
+                <!-- fruit name -->
+                <h3 class="title">{{ partner.first_name }} {{ partner.last_name }}</h3>
+                <!-- fruit description -->
+                <p class="description">+359{{ partner.phone_number}}</p>
+                <p class="description">{{ partner.email}}</p>
+                <!-- fruit details button -->
+                {% if request.user.is_staff %}
+                    <a class="details-btn" href="{% url 'edit_partner' pk=partner.pk %}">Edit</a>
+                    <a class="details-btn" href="{% url 'delete_partner' pk=partner.pk %}">Delete</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            </h2>
+
+
+            <h2>Job Coaches
+
+            <!-- first fruit -->
+            {% for partner in job_partners %}
+            <div class="fruit">
+                <!-- fruit image -->
+                <img src="{{ partner.profile_picture }}" alt="example1"/>
+                <!-- fruit name -->
+                <h3 class="title">{{ partner.first_name }} {{ partner.last_name }}</h3>
+                <!-- fruit description -->
+                <p class="description">+359{{ partner.phone_number}}</p>
+                <p class="description">{{ partner.email}}</p>
+                <!-- fruit details button -->
+                {% if request.user.is_staff %}
+
+                    <a class="details-btn" href="{% url 'edit_partner' pk=partner.pk %}">Edit</a>
+                    <a class="details-btn" href="{% url 'delete_partner' pk=partner.pk %}">Delete</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            </h2>
+            </section>
+    </main>
+</div>
+<!-- footer -->
+<footer>
+    <p>Created by Angel Gadzhev</p>
+</footer>
+</body>
+</html>

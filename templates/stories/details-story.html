@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=\, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+    <title>MyDiary</title>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <div class="user">
+        <a href="{% url 'index' %}">MyDiary</a>
+        <a href="{% url 'partners_view' %}">Partners</a>
+            </div>
+
+        <nav>
+            <!-- If there is a user profile -->
+            <div class="user">
+                <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
+                <a href="{% url 'my_stories' %}">My Stories</a>
+                <a href="{% url 'add_story' %}">Add Story</a>
+                <a href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
+                <a href="{% url 'logout_user' %}">Logout</a>
+            </div>
+
+        </nav>
+
+    </header>
+
+    <main>
+
+        <!-- Fruit Details -->
+        <section id="details">
+            <div id="details-wrapper">
+                <!-- fruit image -->
+                <img id="details-img" src="{{ story.picture }}" alt="example1"/>
+                <!-- fruit name -->
+                <p id="details-title">{{ story.date }}</p>
+                <p id="details-title">Overall: {{ story.health }}</p>
+                <p id="details-title">Health: {{ story.overall }}</p>
+                <p id="details-title">Love: {{ story.love }}</p>
+                <p id="details-title">Work: {{ story.work }}</p>
+                <p id="details-title"> {{ story.description }}</p>
+                <div id="info-wrapper">
+                    <div id="details-description">
+
+                        </p>
+                    </div>
+
+                    <!--Edit and Delete buttons -->
+                    <div id="action-buttons">
+                        <a href="{% url 'edit_story' pk=story.pk %}" id="edit-btn">Edit</a>
+                        <a href="{% url 'delete_story' pk=story.pk %}" id="delete-btn">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
+<!-- footer -->
+<footer>
+    <p>Created by Angel Gadzhev</p>
+</footer>
+</body>
+</html>
