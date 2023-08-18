@@ -18,7 +18,7 @@
             </div>
 
         <nav>
-            <!-- If there is a user profile -->
+
             <div class="user">
                 <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
                 <a href="{% url 'index' %}">My Stories</a>
@@ -41,19 +41,19 @@
     </style>
                 <h1>Are you sure you want to delete your profile?</h1>
                 
-                <!-- Delete Profile Form -->
+
                 <form id='delete' method="post" action="{% url 'profile_delete' pk=request.user.pk %}">
-                    <!-- Confirm Button -->
+
                     <button type="submit">Yes</button>
                     {% csrf_token %}
                 </form>
-                <!-- End Delete Profile Form -->
+
             </div>
             
         </section>
     </main>
 </div>
-<!-- footer -->
+
 <footer>
     <p>Created by Angel Gadzhev</p>
 </footer>

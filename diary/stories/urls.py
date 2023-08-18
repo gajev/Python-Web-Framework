@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 
 from diary.stories.views import my_stories, AddStoryView, detail_story, EditStoryView, \
     DeleteStoryView, favorite_stories, TodoListView, TodoCreateView

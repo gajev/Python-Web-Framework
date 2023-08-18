@@ -18,7 +18,7 @@
             </div>
 
         <nav>
-            <!-- If there is a user profile -->
+
             <div class="user">
                 <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
                 <a href="{% url 'my_stories' %}">My Stories</a>
@@ -31,7 +31,7 @@
 
     <main>
 
-        <!-- Profile Details Section -->
+
 
         <section id="details">
             <div id="details-wrapper">
@@ -41,7 +41,7 @@
         }
     </style>
 
-                <!-- if the user has NO profile image -->
+
                 {% if not request.user.profile_picture %}
                 <img id="details-img" src="{% static 'images/profile-icon-empty.png'%}" alt="profile img"/>
                 {% else %}
@@ -49,7 +49,7 @@
                 {% endif %}
 
 
-                <!-- user's full name -->
+
                 {% if request.user.first_name and request.user.last_name%}
                 <p id="details-title">{{ request.user.first_name }} {{ request.user.last_name }}</p>
                     {% elif request.user.first_name%}
@@ -57,13 +57,12 @@
                 {% endif %}
                 <div id="info-wrapper">
                     <div id="details-description">
-                        <!-- email -->
+
                         <p>
                             {{ request.user.email }}
                         </p>
                     </div>
 
-                    <!--Edit and Delete buttons -->
                     <div id="action-buttons">
                         <a href="{% url 'profile_edit' pk=request.user.pk %}" id="edit-btn">Edit</a>
                         <a href="{% url 'profile_delete' pk=request.user.pk %}" id="delete-btn">Delete</a>
@@ -74,7 +73,7 @@
 
     </main>
 </div>
-<!-- footer -->
+
 <footer>
     <p>Created by Angel Gadzhev</p>
 </footer>

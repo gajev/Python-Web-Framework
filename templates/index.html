@@ -19,7 +19,7 @@
 
         <nav>
 
-            <!-- If there is a user profile -->
+
             <div class="user">
                 <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
                 <a href="{% url 'my_stories' %}">My Stories</a>
@@ -31,7 +31,7 @@
     </header>
 
     <main>
-        <!-- Home page -->
+
         <section id="home">
             {% if request.user.first_name %}
                 <h1>Welcome to MyDiary, {{ request.user.first_name }}</h1>
@@ -47,7 +47,7 @@
 
       </main>
     </div>
-<!-- footer -->
+
     <footer>
       <p>Created by Angel Gadzhev</p>
     </footer>

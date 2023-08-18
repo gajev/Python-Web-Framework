@@ -1,10 +1,5 @@
 from django.contrib import admin
 from .models import Story, TodoItem
-import csv
-from django.http import HttpResponse
-
-
-
 
 
 @admin.register(Story)

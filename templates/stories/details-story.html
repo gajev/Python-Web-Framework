@@ -18,7 +18,7 @@
             </div>
 
         <nav>
-            <!-- If there is a user profile -->
+
             <div class="user">
                 <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
                 <a href="{% url 'my_stories' %}">My Stories</a>
@@ -33,12 +33,12 @@
 
     <main>
 
-        <!-- Fruit Details -->
+
         <section id="details">
             <div id="details-wrapper">
-                <!-- fruit image -->
+
                 <img id="details-img" src="{{ story.picture }}" alt="example1"/>
-                <!-- fruit name -->
+
                 <p id="details-title">{{ story.date }}</p>
                 <p id="details-title">Overall: {{ story.health }}</p>
                 <p id="details-title">Health: {{ story.overall }}</p>
@@ -51,7 +51,7 @@
                         </p>
                     </div>
 
-                    <!--Edit and Delete buttons -->
+
                     <div id="action-buttons">
                         <a href="{% url 'edit_story' pk=story.pk %}" id="edit-btn">Edit</a>
                         <a href="{% url 'delete_story' pk=story.pk %}" id="delete-btn">Delete</a>
@@ -62,7 +62,7 @@
 
     </main>
 </div>
-<!-- footer -->
+
 <footer>
     <p>Created by Angel Gadzhev</p>
 </footer>

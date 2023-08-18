@@ -19,7 +19,7 @@
 
         <nav>
 
-            <!-- If there is a user profile -->
+
             <div class="user">
                 <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
                 <a href="{% url 'my_stories' %}">My Stories</a>
@@ -34,7 +34,7 @@
 
     <main>
 
-        <!-- Dashboard Page -->
+
         <a href="{% url 'todo_list' %}"> <h3>My to-do list</h3> </a>
 
         {% if stories %}
@@ -72,18 +72,18 @@
                 {% endif %}
         </h2>
         <section id="dashboard">
-            <!-- Display a div "fruit" with information about each post (if any)-->
 
-            <!-- first fruit -->
+
+
             {% for story in stories %}
             <div class="fruit">
-                <!-- fruit image -->
+
                 <img src="{{ story.picture }}" alt="example1"/>
-                <!-- fruit name -->
+
                 <h3 class="title">{{ fruit.name }}</h3>
-                <!-- fruit description -->
+
                 <p class="description">{{ story.description|truncatechars:50 }}</p>
-                <!-- fruit details button -->
+
                 <a class="details-btn" href="{% url 'detail_story' pk=story.pk %}">{{ story.date }}</a>
             </div>
             {% endfor %}
@@ -91,13 +91,13 @@
         </section>
         {% else %}
 
-        <!-- Display a heading if there are no posts -->
+
         <h2>No stories yet.</h2>
         {% endif %}
 
     </main>
 </div>
-<!-- footer -->
+
 <footer>
     <p>Created by Angel Gadzhev</p>
 </footer>

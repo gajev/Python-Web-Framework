@@ -3,14 +3,13 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.db import IntegrityError
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as views
 from diary.stories.forms import AddStoryForm, EditStoryForm, TodoItemForm
 from diary.stories.models import Story, TodoItem
 from datetime import timedelta
 
-from exception_handler import server_error_view
 
 UserModel = get_user_model()
 
@@ -79,6 +78,18 @@ class EditStoryView(views.UpdateView):
         check_user_is_owner(self.object, self.request)
         return super().get(request, *args, **kwargs)
 
+    def form_valid(self, form):
+        try:
+            self.object = form.save()
+            return super().form_valid(form)
+        except IntegrityError:
+            default_image_path = "staticfiles/images/day_taken.png"
+            with open(default_image_path, "rb") as default_image_file:
+                default_image_data = default_image_file.read()
+
+            current_response = HttpResponse(default_image_data, content_type='image/png', status=500)
+            return current_response
+
 
 class DeleteStoryView(views.DeleteView):
     def get(self, request, *args, **kwargs):
@@ -90,6 +101,7 @@ class DeleteStoryView(views.DeleteView):
     model = Story
     success_url = reverse_lazy('my_stories')
 
+
 @login_required
 def my_stories(request):
     stories = Story.objects.filter(user=request.user)
@@ -100,6 +112,7 @@ def my_stories(request):
     if status:
         context.update(status)
     return render(request, 'stories/my_stories.html', context)
+
 
 @login_required
 def favorite_stories(request):
@@ -123,8 +136,6 @@ def detail_story(request, pk):
 class TodoListView(views.ListView):
     model = TodoItem
     template_name = 'stories/to_do_list.html'
-
-
 
 
 class TodoCreateView(views.FormView):

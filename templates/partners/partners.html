@@ -19,7 +19,6 @@
 
         <nav>
 
-            <!-- If there is a user profile -->
             <div class="user">
                 <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
                 <a href="{% url 'my_stories' %}">My Stories</a>
@@ -36,18 +35,18 @@
     <section id="dashboard">
             <h2>Life Coaches
 
-            <!-- first fruit -->
+
             {% for partner in life_partners %}
             <div class="fruit">
-                <!-- fruit image -->
+
                 <img src="{{ partner.profile_picture }}" alt="example1"/>
-                <!-- fruit name -->
+
                 <h3 class="title">{{ partner.first_name }} {{ partner.last_name }}</h3>
-                <!-- fruit description -->
+
                 <p class="description">+359{{ partner.phone_number}}</p>
                 <p class="description">{{ partner.email }}</p>
 
-                <!-- fruit details button -->
+
                 {% if request.user.is_staff %}
                     <a class="details-btn" href="{% url 'edit_partner' pk=partner.pk %}">Edit</a>
                     <a class="details-btn" href="{% url 'delete_partner' pk=partner.pk %}">Delete</a>
@@ -60,17 +59,17 @@
 
             <h2>Health Doctors
 
-            <!-- first fruit -->
+
             {% for partner in doctor_partners %}
             <div class="fruit">
-                <!-- fruit image -->
+
                 <img src="{{ partner.profile_picture }}" alt="example1"/>
-                <!-- fruit name -->
+
                 <h3 class="title">{{ partner.first_name }} {{ partner.last_name }}</h3>
-                <!-- fruit description -->
+
                 <p class="description">+359{{ partner.phone_number}}</p>
                 <p class="description">{{ partner.email}}</p>
-                <!-- fruit details button -->
+
                 {% if request.user.is_staff %}
                     <a class="details-btn" href="{% url 'edit_partner' pk=partner.pk %}">Edit</a>
                     <a class="details-btn" href="{% url 'delete_partner' pk=partner.pk %}">Delete</a>
@@ -82,17 +81,17 @@
 
             <h2>Love Coaches
 
-            <!-- first fruit -->
+
             {% for partner in love_partners %}
             <div class="fruit">
-                <!-- fruit image -->
+
                 <img src="{{ partner.profile_picture }}" alt="example1"/>
-                <!-- fruit name -->
+
                 <h3 class="title">{{ partner.first_name }} {{ partner.last_name }}</h3>
-                <!-- fruit description -->
+
                 <p class="description">+359{{ partner.phone_number}}</p>
                 <p class="description">{{ partner.email}}</p>
-                <!-- fruit details button -->
+
                 {% if request.user.is_staff %}
                     <a class="details-btn" href="{% url 'edit_partner' pk=partner.pk %}">Edit</a>
                     <a class="details-btn" href="{% url 'delete_partner' pk=partner.pk %}">Delete</a>
@@ -105,17 +104,17 @@
 
             <h2>Job Coaches
 
-            <!-- first fruit -->
+
             {% for partner in job_partners %}
             <div class="fruit">
-                <!-- fruit image -->
+
                 <img src="{{ partner.profile_picture }}" alt="example1"/>
-                <!-- fruit name -->
+
                 <h3 class="title">{{ partner.first_name }} {{ partner.last_name }}</h3>
-                <!-- fruit description -->
+
                 <p class="description">+359{{ partner.phone_number}}</p>
                 <p class="description">{{ partner.email}}</p>
-                <!-- fruit details button -->
+
                 {% if request.user.is_staff %}
 
                     <a class="details-btn" href="{% url 'edit_partner' pk=partner.pk %}">Edit</a>

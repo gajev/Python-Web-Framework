@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=\, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+    <title>MyDiary</title>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <a href="{% url 'index' %}">MyDiary</a>
+
+        <nav>
+
+            <div class="guest">
+
+                <a href="{% url 'about' %}">About</a>
+                <a href="{% url 'register_user' %}">Create Profile</a>
+                <a href="{% url 'login_user' %}">Login</a>
+
+            </div>
+        </nav>
+    </header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyDiary</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Merienda', cursive;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        h2 {
+            border-bottom: 1px solid white;
+            padding-bottom: 10px;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>MyDiary</h2>
+    <h3>Project Description:</h3>
+    <ul>
+        In the age of social media, where the pursuit of likes and comments often defines our sense of happiness, it's important to reconnect with our own feelings and emotions. <strong>MyDiary</strong> is a unique web application that empowers users to measure and track their happiness based on their personal experiences and feelings, rather than seeking external validation.
+    </ul>
+    <h3>Key Features:</h3>
+    <ul>
+        <li><strong>Personalized Diary Entries:</strong> Users can create private diary entries to capture their thoughts, experiences, and emotions on a daily basis. Each entry provides a canvas for users to express their feelings freely.</li>
+        <li><strong>Happiness Rating System:</strong> The core of the application revolves around allowing users to rate their own happiness on a scale. This rating system encourages self-reflection and introspection, enabling users to evaluate their feelings without the influence of external factors.</li>
+        <li><strong>Statistics:</strong> Over time, the application compiles the happiness ratings into visual statistics which help users to identify patterns, triggers, and trends in their emotions. Users can track their personal growth and see the impact of various activities and circumstances on their happiness levels.</li>
+        <li><strong>Privacy and Security:</strong> The application ensures the privacy and security of users' diary entries and data. Users' entries are completely private.</li>
+        <li><strong>Professional Support:</strong> While the focus is on self-assessment, the app also includes the contacts of our professional support partners which help users with their health, personal growth, emotions, and strategies for enhancing well-being.</li>
+    </ul>
+    <h3>Benefits:</h3>
+    <ul>
+        <li><strong>Encourages Self-Awareness:</strong> MyDiary shifts the focus from external validation to internal self-awareness, allowing users to better understand their emotions and well-being.</li>
+        <li><strong>Promotes Healthy Habits:</strong> By consistently reflecting on their feelings and experiences, users can develop healthier habits and coping mechanisms to manage their emotions.</li>
+        <li><strong>Reduces Social Media Dependence:</strong> The app aims to break the cycle of seeking happiness solely through likes and comments on social media platforms.</li>
+        <li><strong>Provides Long-Term Insights:</strong> The visualized statistics offer a unique opportunity for users to reflect on their emotional journey over time, identifying what contributes to their happiness or moments of challenge.</li>
+    </ul>
+    <h3>Conclusion:</h3>
+    <p>
+        In a world inundated with external influences, <strong>MyDiary</strong> stands as a sanctuary for authentic self-expression and personal growth. By encouraging users to measure their happiness through their own feelings, this web application empowers individuals to take control of their emotional well-being and cultivate a deeper connection with themselves.
+    </p>
+</body>
+</html>

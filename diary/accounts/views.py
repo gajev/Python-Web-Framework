@@ -1,4 +1,4 @@
-from django.contrib.auth import views as auth_views, authenticate, login, get_user_model
+from django.contrib.auth import views as auth_views, login, get_user_model
 from django.core.exceptions import PermissionDenied
 from django.urls import reverse_lazy
 from django.views import generic as views
@@ -17,6 +17,10 @@ def index(request):
     if request.user.is_authenticated:
         return render(request, 'index.html')
     return render(request, 'index_no_profile.html')
+
+
+def about(request):
+    return render(request, 'about.html')
 
 
 class UserRegistrationView(views.CreateView):

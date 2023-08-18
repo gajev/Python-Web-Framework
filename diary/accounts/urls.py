@@ -1,12 +1,11 @@
 from django.urls import path, include
 
-from diary.accounts import views
 from diary.accounts.views import index, UserRegistrationView, LoginUserView, LogoutUserView, \
-    ProfileEditView, ProfileDeleteView, ProfileDetailsView
-
+    ProfileEditView, ProfileDeleteView, ProfileDetailsView, about
 
 urlpatterns = (
     path('', index, name='index'),
+    path('about/', about, name='about'),
     path('register/', UserRegistrationView.as_view(), name='register_user'),
     path('login/', LoginUserView.as_view(), name='login_user'),
     path('logout/', LogoutUserView.as_view(), name='logout_user'),

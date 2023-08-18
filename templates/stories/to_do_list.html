@@ -19,7 +19,7 @@
 
         <nav>
 
-            <!-- If there is a user profile -->
+
             <div class="user">
                 <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
                 <a href="{% url 'my_stories' %}">My Stories</a>
@@ -34,19 +34,19 @@
 
     <main>
 
-        <!-- Dashboard Page -->
+
         <a href="{% url 'create_to_do' %}"> <h3>Add To-do</h3> </a>
     <ul>
     {% for todo in todoitem_list %}
         {% if todo.user_id == request.user.id %}
-                <h3 class="title">Category: {{ todo.category }}.<br> Action: {{ todo.title }} </h3>
+                <h3 class="title">Category: {{ todo.category }}<br> Action: {{ todo.title }} </h3>
             {% endif %}
             {% endfor %}
     </ul>
 
 </body>
 </main>
-<!-- footer -->
+
 <footer>
     <p>Created by Angel Gadzhev</p>
 </footer>
