@@ -67,7 +67,6 @@ class AddStoryView(views.CreateView):
 
 
 class EditStoryView(views.UpdateView):
-
     template_name = 'stories/edit-story.html'
     model = Story
     form_class = EditStoryForm
@@ -92,14 +91,15 @@ class EditStoryView(views.UpdateView):
 
 
 class DeleteStoryView(views.DeleteView):
+    template_name = 'stories/delete-story.html'
+    model = Story
+    success_url = reverse_lazy('my_stories')
+
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         check_user_is_owner(self.object, self.request)
         context = self.get_context_data(object=self.object)
         return self.render_to_response(context)
-    template_name = 'stories/delete-story.html'
-    model = Story
-    success_url = reverse_lazy('my_stories')
 
 
 @login_required
