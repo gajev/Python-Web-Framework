@@ -21,7 +21,7 @@
 
             <div class="user">
                 <a href="{% url 'favorite_stories' %}">My Favorite Stories</a>
-                <a href="{% url 'index' %}">My Stories</a>
+                <a href="{% url 'my_stories' %}">My Stories</a>
                 <a href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
                 <a href="{% url 'logout_user' %}">Logout</a>
             </div>
